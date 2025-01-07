@@ -1,7 +1,38 @@
 import React from "react";
 import "./dashboardpage.css";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
+// import {useAuth} from "@clerk/clerk-react"
 
 const DashBoardPage = () => {
+  const navigate = useNavigate()
+  const queryClient = useQueryClient()
+  // const {userId} = useAuth()
+  const mutation = useMutation({
+    mutationFn:(text)=>{
+      return fetch(`${import.meta.env.VITE_API_URL}/api/chats`,{
+        method:"POST",
+        credentials:"include",
+        headers:{
+          "Content-Type":"application/json"
+        },
+          body:JSON.stringify({text})
+      }).then((res)=> res.json())
+    },
+    onSuccess:(id)=>{
+      queryClient.invalidateQueries({queryKey:["userChats"]});
+      navigate(`/dashboard/chats/${id}`)
+
+    }
+  })
+
+  const handleSubmit = async (e)=>{
+    e.preventDefault();
+    const text = e.target.text.value;
+    if(!text) return;
+    mutation.mutate(text)
+  }
+
   return (
     <div className="dashboardpage">
       <div className="texts">
@@ -25,8 +56,8 @@ const DashBoardPage = () => {
         </div>
       </div>
       <div className="formContainer">
-        <form action="">
-          <input type="text" placeholder="Ask Me Anything......"/>
+        <form action="" onSubmit={handleSubmit}>
+          <input type="text" name="text" placeholder="Ask Me Anything......"/>
           <button>
             <img src="/arrow.png" alt="" />
           </button>

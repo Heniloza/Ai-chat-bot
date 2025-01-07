@@ -25,13 +25,21 @@ const HomePage = () => {
           <div className="chat">
             <TypeAnimation
               sequence={[
-                "Human: We produce food for Mice",
+                "User: How can you help me?",
                 2000,
-                "Bot: We produce food for Hamsters",
+                "Bot: I can answer questions, provide suggestions, and assist with tasks.",
                 2000,
-                "Human2 :We produce food for Guinea Pigs",
+                "User: Can you summarize articles?",
                 2000,
-                "Bot: We produce food for Chinchillas",
+                "Bot: Absolutely! Just share the text or link, and I'll create a summary.",
+                2000,
+                "User: Can you help me learn something new?",
+                2000,
+                "Bot: Of course! Let me know the topic, and I'll guide you step by step.",
+                2000,
+                "User: What makes you unique?",
+                2000,
+                "Bot: I'm designed to offer personalized, real-time assistance for your needs!",
                 2000,
               ]}
               wrapper="span"
