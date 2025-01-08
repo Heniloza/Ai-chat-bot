@@ -1,4 +1,3 @@
-
 # AI Chat Bot Application
 
 Hello,Welcome!This project is designed to provide users AI-powered chatbot experience. It includes advanced features like image analysis, user data storage,intelligent conversational capabilities and also have authentication.
