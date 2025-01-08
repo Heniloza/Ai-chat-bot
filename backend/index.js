@@ -128,7 +128,7 @@ app.put("/api/chats/:id",ClerkExpressRequireAuth(),async(req,res)=>{
     const userId = req.auth.userId;
     const {question,answer,img} = req.body;
     const newItems = [
-        ...(question?{role:"user",parts:[{text:question}],...(img && {img})}:[]),
+        ...(question?[{role:"user",parts:[{text:question}],...(img && {img})}]:[]),
         {role:"model",parts:[{text:answer}]}
     ]
     try {
